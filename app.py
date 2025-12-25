@@ -35,6 +35,8 @@ def calculate_percentage(rows, team: str) -> float:
     denominator_rows = team_rows
     numerator = len(numerator_rows)
     denominator = len(denominator_rows)
+    if denominator == 0:
+        return 0.0
     return (numerator / denominator) * 100
 
 
