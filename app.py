@@ -1,6 +1,11 @@
 import argparse
 
 
+class BadTeamFilterError(Exception):
+    """Raised when an invalid team name is provided for filtering."""
+    pass
+
+
 DATA = [
     {"user": "alice", "team": "alpha", "role": "api", "active": True},
     {"user": "bob", "team": "alpha", "role": "api", "active": False},
@@ -36,7 +41,7 @@ def calculate_percentage(rows, team: str) -> float:
     numerator = len(numerator_rows)
     denominator = len(denominator_rows)
     if denominator == 0:
-        raise ValueError(f"Invalid team argument: '{team}' not found in data")
+        raise BadTeamFilterError(f"Invalid team argument: '{team}' not found in data")
     return (numerator / denominator) * 100
 
 
